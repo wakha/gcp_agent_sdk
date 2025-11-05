@@ -133,6 +133,69 @@ class WebsiteChatbotWorkflow:
                 'sources': []
             }
     
+    async def process_query_stream(
+        self,
+        query: str,
+        chat_history: Optional[List[Dict]] = None,
+        top_k: int = 5
+    ):
+        """
+        Process a user query through the workflow with streaming.
+        
+        Args:
+            query: User's question
+            chat_history: Optional chat history for context
+            top_k: Number of search results to retrieve
+            
+        Yields:
+            Dictionary chunks with type, content, and metadata
+        """
+        logger.info(f"Processing streaming query: {query}")
+        
+        # Create initial search request
+        search_request = SearchRequest(query=query, top_k=top_k)
+        
+        # Track workflow output
+        sources_sent = False
+        
+        # Run workflow
+        async for event in self.workflow.run_stream(search_request):
+            if isinstance(event, WorkflowOutputEvent):
+                logger.info(f"Workflow output event: {type(event.data)}")
+                
+                # Send sources first if available
+                if hasattr(event.data, 'sources') and not sources_sent:
+                    yield {
+                        'type': 'sources',
+                        'sources': event.data.sources
+                    }
+                    sources_sent = True
+                
+                # Stream answer tokens
+                if hasattr(event.data, 'answer'):
+                    # For now, send the full answer as we don't have token-level streaming
+                    # In a future version, this could stream individual tokens
+                    answer = event.data.answer
+                    yield {
+                        'type': 'token',
+                        'content': answer
+                    }
+            
+            elif isinstance(event, WorkflowStatusEvent):
+                logger.info(f"Workflow status: {event.state}")
+                
+                # Optionally yield status updates
+                yield {
+                    'type': 'status',
+                    'state': event.state.name if hasattr(event.state, 'name') else str(event.state)
+                }
+        
+        # Send completion event
+        yield {
+            'type': 'complete',
+            'query': query
+        }
+    
     async def chat(self):
         """
         Run interactive chat session.

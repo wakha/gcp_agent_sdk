@@ -1,222 +1,743 @@
-# Website Chatbot# Website Chatbot
+# 🤖 Website Chatbot
 
 
 
-A grounded question-answering chatbot that indexes entire websites and provides answers with source links. Built using **Microsoft Agent Framework** for multi-agent orchestration and **Google Vertex AI** for LLM capabilities.A grounded question-answering chatbot that indexes entire websites and provides answers with source links. Built using **Microsoft Agent Framework** for multi-agent orchestration and **Google Vertex AI** for LLM capabilities.
+> An intelligent chatbot that answers questions about your website with accurate, source-backed responses.
 
 
 
-> **📖 Complete Documentation:** See [DOCUMENTATION.md](./DOCUMENTATION.md) for comprehensive setup, API reference, deployment guide, and production tips.> **📖 Complete Documentation:** See [DOCUMENTATION.md](./DOCUMENTATION.md) for comprehensive setup, API reference, deployment guide, and production tips.
+Built with **Microsoft Agent Framework** and **Google Vertex AI** to provide grounded answers from indexed website content.A grounded question-answering chatbot that indexes entire websites and provides answers with source links. Built using **Microsoft Agent Framework** for multi-agent orchestration and **Google Vertex AI** for LLM capabilities.
 
 
 
-## Features## Features
+📖 **[View Complete Documentation](./DOCUMENTATION.md)** for detailed setup, API reference, and deployment guides.
 
 
 
-- 🔍 **Whole Website Indexing**: Crawls and indexes entire websites (not just single pages)- 🔍 **Whole Website Indexing**: Crawls and indexes entire websites (not just single pages)
-
-- 🎯 **Grounded Responses**: All answers are based on indexed content with source citations- 🎯 **Grounded Responses**: All answers are based on indexed content with source citations
-
-- 🔗 **Source Links**: Provides direct links to relevant sections of the website- 🔗 **Source Links**: Provides direct links to relevant sections of the website
-
-- 🤖 **Multi-Agent Architecture**: Uses Microsoft Agent Framework for agent orchestration- 🤖 **Multi-Agent Architecture**: Uses Microsoft Agent Framework for agent orchestration
-
-- ☁️ **Google Vertex AI**: Leverages Vertex AI for embeddings and LLM responses- ☁️ **Google Vertex AI**: Leverages Vertex AI for embeddings and LLM responses
-
-- 💬 **Interactive Chat**: Conversational interface with context awareness- 💬 **Interactive Chat**: Conversational interface with context awareness
-
-- 🌐 **REST API**: FastAPI backend with endpoints for easy frontend integration- 🌐 **REST API**: FastAPI backend with endpoints for easy frontend integration
-
-- 🐳 **Docker Ready**: Containerized for easy deployment to GCP Cloud Run- 🐳 **Docker Ready**: Containerized for easy deployment to GCP Cloud Run
-
-- 📡 **Streaming Support**: Real-time streaming responses with Server-Sent Events- 📡 **Streaming Support**: Real-time streaming responses with Server-Sent Events
+---> **📖 Complete Documentation:** See [DOCUMENTATION.md](./DOCUMENTATION.md) for comprehensive setup, API reference, deployment guide, and production tips.A grounded question-answering chatbot that indexes entire websites and provides answers with source links. Built using **Microsoft Agent Framework** for multi-agent orchestration and **Google Vertex AI** for LLM capabilities.A grounded question-answering chatbot that indexes entire websites and provides answers with source links. Built using **Microsoft Agent Framework** for multi-agent orchestration and **Google Vertex AI** for LLM capabilities.
 
 
 
-## Architecture## Architecture
+## ✨ Key Features
 
 
 
-```The chatbot uses a multi-agent workflow:
+| Feature | Description |## Features
 
-User Query → Search Agent → ChromaDB Vector Search
+|---------|-------------|
 
-                ↓1. **Search Agent**: Performs semantic search on indexed website content using vector embeddings
+| 🔍 **Full Website Indexing** | Crawls and indexes entire websites, not just single pages |
 
-          Search Results → Answer Generation Agent → Vertex AI Gemini2. **Answer Generation Agent**: Generates contextual answers using Vertex AI, grounded in search results
+| 🎯 **Grounded Answers** | All responses backed by actual website content |
 
-                                    ↓3. **Workflow Orchestrator**: Coordinates the agents using Microsoft Agent Framework
+| 🔗 **Source Citations** | Provides direct links to relevant pages |- 🔍 **Whole Website Indexing**: Crawls and indexes entire websites (not just single pages)> **📖 Complete Documentation:** See [DOCUMENTATION.md](./DOCUMENTATION.md) for comprehensive setup, API reference, deployment guide, and production tips.> **📖 Complete Documentation:** See [DOCUMENTATION.md](./DOCUMENTATION.md) for comprehensive setup, API reference, deployment guide, and production tips.
 
-                          Grounded Answer + Sources → User
+| 🤖 **Multi-Agent System** | Orchestrated workflow using Microsoft Agent Framework |
 
-``````
+| ☁️ **Cloud-Powered** | Google Vertex AI for embeddings and language understanding |- 🎯 **Grounded Responses**: All answers are based on indexed content with source citations
 
-User Query → Search Agent → Vector Store Search
+| 💬 **Interactive Chat** | Conversational interface with context awareness |
 
-**Components:**                ↓
+| 🌐 **REST API** | Easy integration with any frontend |- 🔗 **Source Links**: Provides direct links to relevant sections of the website
 
-- **Search Agent** - Semantic search on indexed content          Search Results → Answer Generation Agent → Vertex AI LLM
+| 📡 **Real-time Streaming** | Live responses via Server-Sent Events |
 
-- **Answer Generation Agent** - Grounded answer generation                                    ↓
+| 🐳 **Docker Ready** | Deploy anywhere with containers |- 🤖 **Multi-Agent Architecture**: Uses Microsoft Agent Framework for agent orchestration
 
-- **Workflow Orchestrator** - Microsoft Agent Framework coordination                          Grounded Answer + Source Links → User
 
-- **Vector Store** - ChromaDB Cloud for embeddings```
 
-- **LLM** - Google Vertex AI Gemini
+---- ☁️ **Google Vertex AI**: Leverages Vertex AI for embeddings and LLM responses## Features## Features
+
+
+
+## 🏗️ How It Works- 💬 **Interactive Chat**: Conversational interface with context awareness
+
+
+
+```- 🌐 **REST API**: FastAPI backend with endpoints for easy frontend integration
+
+┌─────────────┐
+
+│ User Query  │- 🐳 **Docker Ready**: Containerized for easy deployment to GCP Cloud Run
+
+└──────┬──────┘
+
+       │- 📡 **Streaming Support**: Real-time streaming responses with Server-Sent Events- 🔍 **Whole Website Indexing**: Crawls and indexes entire websites (not just single pages)- 🔍 **Whole Website Indexing**: Crawls and indexes entire websites (not just single pages)
+
+       v
+
+┌─────────────────────┐
+
+│  Search Agent       │──────> ChromaDB Vector Search
+
+│  (Semantic Search)  │## Architecture- 🎯 **Grounded Responses**: All answers are based on indexed content with source citations- 🎯 **Grounded Responses**: All answers are based on indexed content with source citations
+
+└──────┬──────────────┘
+
+       │
+
+       v
+
+┌─────────────────────┐```- 🔗 **Source Links**: Provides direct links to relevant sections of the website- 🔗 **Source Links**: Provides direct links to relevant sections of the website
+
+│  Answer Agent       │──────> Vertex AI Gemini
+
+│  (Generate Answer)  │User Query → Search Agent → ChromaDB Vector Search
+
+└──────┬──────────────┘
+
+       │                ↓- 🤖 **Multi-Agent Architecture**: Uses Microsoft Agent Framework for agent orchestration- 🤖 **Multi-Agent Architecture**: Uses Microsoft Agent Framework for agent orchestration
+
+       v
+
+┌─────────────────────┐          Search Results → Answer Generation Agent → Vertex AI Gemini
+
+│  Response with      │
+
+│  Source Links       │                                    ↓- ☁️ **Google Vertex AI**: Leverages Vertex AI for embeddings and LLM responses- ☁️ **Google Vertex AI**: Leverages Vertex AI for embeddings and LLM responses
+
+└─────────────────────┘
+
+```                          Grounded Answer + Sources → User
+
+
+
+**Key Components:**```- 💬 **Interactive Chat**: Conversational interface with context awareness- 💬 **Interactive Chat**: Conversational interface with context awareness
+
+- **Search Agent** → Finds relevant content using semantic search
+
+- **Answer Agent** → Generates accurate answers from search results
+
+- **ChromaDB Cloud** → Vector database for fast similarity search
+
+- **Vertex AI Gemini** → Advanced language model for understanding and generation**Components:**- 🌐 **REST API**: FastAPI backend with endpoints for easy frontend integration- 🌐 **REST API**: FastAPI backend with endpoints for easy frontend integration
+
+
+
+---- **Search Agent** - Semantic search on indexed content
+
+
+
+## 🚀 Quick Start- **Answer Generation Agent** - Grounded answer generation- 🐳 **Docker Ready**: Containerized for easy deployment to GCP Cloud Run- 🐳 **Docker Ready**: Containerized for easy deployment to GCP Cloud Run
+
+
+
+### Prerequisites- **Workflow Orchestrator** - Microsoft Agent Framework coordination
+
+
+
+- Python 3.9 or higher- **Vector Store** - ChromaDB Cloud for embeddings- 📡 **Streaming Support**: Real-time streaming responses with Server-Sent Events- 📡 **Streaming Support**: Real-time streaming responses with Server-Sent Events
+
+- Google Cloud account ([Get started](https://cloud.google.com))
+
+- ChromaDB Cloud account ([Free tier available](https://www.trychroma.com))- **LLM** - Google Vertex AI Gemini
+
+- Docker (optional, for deployment)
+
+
+
+### Installation
 
 ## Quick Start
 
-## Quick Start
+**Step 1: Install Dependencies**
 
-### Prerequisites
+```powershell## Architecture## Architecture
 
-### Prerequisites
+pip install -r requirements.txt
 
-- Python 3.9+
+```### Prerequisites
 
-- Python 3.9+- Google Cloud Platform account with Vertex AI enabled
 
-- Google Cloud Platform account with Vertex AI enabled- ChromaDB Cloud account (free tier available)
 
-- ChromaDB Cloud account (free tier available)- Docker (optional, for containerized deployment)
+**Step 2: Configure Settings**
 
-- Docker (optional, for containerized deployment)
 
-### Setup
 
-### Setup
-
-### 1. Install Dependencies
-
-### 1. Install Dependencies
-
-```powershell
-
-```powershellpip install -r requirements.txt
-
-pip install -r requirements.txt```
-
-```
-
-### 2. Configure Environment Variables
-
-### 2. Configure Environment Variables
-
-Edit the `.env` file with your configuration:
-
-Edit the `.env` file with your configuration:
+Edit the `.env` file:- Python 3.9+
 
 ```env
 
-```env# Google Cloud
+# Google Cloud Configuration- Google Cloud Platform account with Vertex AI enabled```The chatbot uses a multi-agent workflow:
 
-# Google CloudGOOGLE_CLOUD_PROJECT=your-project-id
+GOOGLE_CLOUD_PROJECT=your-project-id
 
-GOOGLE_CLOUD_PROJECT=your-project-idGOOGLE_CLOUD_LOCATION=us-central1
+GOOGLE_CLOUD_LOCATION=us-central1- ChromaDB Cloud account (free tier available)
 
-GOOGLE_CLOUD_LOCATION=us-central1VERTEX_AI_MODEL=gemini-2.0-flash-001
 
-VERTEX_AI_MODEL=gemini-2.0-flash-001VERTEX_AI_EMBEDDING_MODEL=text-embedding-004
+
+# AI Models- Docker (optional, for containerized deployment)User Query → Search Agent → ChromaDB Vector Search
+
+VERTEX_AI_MODEL=gemini-2.0-flash-001
 
 VERTEX_AI_EMBEDDING_MODEL=text-embedding-004
 
-# ChromaDB Cloud
 
-# ChromaDB CloudCHROMADB_TENANT=your-tenant-id
 
-CHROMADB_TENANT=your-tenant-idCHROMADB_DATABASE=your-database-name
+# ChromaDB Cloud### Setup                ↓1. **Search Agent**: Performs semantic search on indexed website content using vector embeddings
 
-CHROMADB_DATABASE=your-database-nameCHROMADB_API_KEY=your-api-key
+CHROMADB_TENANT=your-tenant-id
 
-CHROMADB_API_KEY=your-api-keyCHROMADB_COLLECTION_NAME=website_content
+CHROMADB_DATABASE=your-database-name
 
-CHROMADB_COLLECTION_NAME=website_content
+CHROMADB_API_KEY=your-api-key
+
+CHROMADB_COLLECTION_NAME=website_content**1. Install Dependencies**          Search Results → Answer Generation Agent → Vertex AI Gemini2. **Answer Generation Agent**: Generates contextual answers using Vertex AI, grounded in search results
+
+
 
 # API Settings
 
-# API SettingsPORT=8080
+PORT=8080
 
-PORT=8080CORS_ORIGINS=*
-
-CORS_ORIGINS=*```
+CORS_ORIGINS=*```powershell                                    ↓3. **Workflow Orchestrator**: Coordinates the agents using Microsoft Agent Framework
 
 ```
 
-### 3. Authenticate with Google Cloud
+pip install -r requirements.txt
 
-### 3. Authenticate with Google Cloud
+**Step 3: Authenticate with Google Cloud**
 
-```powershell
+```powershell```                          Grounded Answer + Sources → User
 
-```powershellgcloud auth application-default login
-
-gcloud auth application-default login```
+gcloud auth application-default login
 
 ```
 
-Or set the path to your service account key:
 
-Or set the path to your service account key:
+
+Or use a service account:**2. Configure Environment Variables**``````
 
 ```powershell
 
-```powershell$env:GOOGLE_APPLICATION_CREDENTIALS="path\to\your\service-account-key.json"
-
-$env:GOOGLE_APPLICATION_CREDENTIALS="path\to\your\service-account-key.json"```
+$env:GOOGLE_APPLICATION_CREDENTIALS="path\to\service-account-key.json"
 
 ```
 
-### 4. Run the API
+Edit the `.env` file with your configuration:User Query → Search Agent → Vector Store Search
 
-### 4. Run the API
+**Step 4: Start the Server**
 
 ```powershell
-
-```powershell# Start FastAPI server
-
-# Start FastAPI serverpython api.py
 
 python api.py
 
-# Test the API
+``````env**Components:**                ↓
 
-# Test the APIInvoke-RestMethod -Uri http://localhost:8080/health
 
-Invoke-RestMethod -Uri http://localhost:8080/health```
+
+Test the API:# Google Cloud
+
+```powershell
+
+Invoke-RestMethod -Uri http://localhost:8080/healthGOOGLE_CLOUD_PROJECT=your-project-id- **Search Agent** - Semantic search on indexed content          Search Results → Answer Generation Agent → Vertex AI LLM
 
 ```
 
-## Usage
+GOOGLE_CLOUD_LOCATION=us-central1
 
-## Usage
+---
 
-### REST API
+VERTEX_AI_MODEL=gemini-2.0-flash-001- **Answer Generation Agent** - Grounded answer generation                                    ↓
 
-### REST API
+## 💻 Usage
 
-The API provides several endpoints:
+VERTEX_AI_EMBEDDING_MODEL=text-embedding-004
 
-The API provides several endpoints:
+### API Endpoints
 
-- `GET /health` - Health check
+- **Workflow Orchestrator** - Microsoft Agent Framework coordination                          Grounded Answer + Source Links → User
 
-- `GET /health` - Health check- `POST /api/chat` - Chat (non-streaming)
+| Endpoint | Method | Description |
+
+|----------|--------|-------------|# ChromaDB Cloud
+
+| `/health` | GET | Health check |
+
+| `/api/chat` | POST | Send a question (non-streaming) |CHROMADB_TENANT=your-tenant-id- **Vector Store** - ChromaDB Cloud for embeddings```
+
+| `/api/chat/stream` | POST | Send a question (streaming) |
+
+| `/api/search` | POST | Search indexed content |CHROMADB_DATABASE=your-database-name
+
+| `/api/index` | POST | Index a new website |
+
+CHROMADB_API_KEY=your-api-key- **LLM** - Google Vertex AI Gemini
+
+### Example: Send a Question
+
+CHROMADB_COLLECTION_NAME=website_content
+
+```powershell
+
+$body = @{## Quick Start
+
+    query = "What services do you offer?"
+
+    top_k = 5# API Settings
+
+} | ConvertTo-Json
+
+PORT=8080## Quick Start
+
+Invoke-RestMethod -Uri http://localhost:8080/api/chat `
+
+  -Method Post `CORS_ORIGINS=*
+
+  -ContentType "application/json" `
+
+  -Body $body```### Prerequisites
+
+```
+
+
+
+### Example: Stream a Response
+
+**3. Authenticate with Google Cloud**### Prerequisites
+
+```javascript
+
+const response = await fetch('http://localhost:8080/api/chat/stream', {
+
+  method: 'POST',
+
+  headers: { 'Content-Type': 'application/json' },```powershell- Python 3.9+
+
+  body: JSON.stringify({ query: 'Tell me about your company' })
+
+});gcloud auth application-default login
+
+
+
+const reader = response.body.getReader();```- Python 3.9+- Google Cloud Platform account with Vertex AI enabled
+
+const decoder = new TextDecoder();
+
+
+
+while (true) {
+
+  const { done, value } = await reader.read();Or set the path to your service account key:- Google Cloud Platform account with Vertex AI enabled- ChromaDB Cloud account (free tier available)
+
+  if (done) break;
+
+  
+
+  const chunk = decoder.decode(value);
+
+  console.log(chunk);```powershell- ChromaDB Cloud account (free tier available)- Docker (optional, for containerized deployment)
+
+}
+
+```$env:GOOGLE_APPLICATION_CREDENTIALS="path\to\your\service-account-key.json"
+
+
+
+---```- Docker (optional, for containerized deployment)
+
+
+
+## 🐳 Docker Deployment
+
+
+
+### Run Locally with Docker**4. Run the API**### Setup
+
+
+
+```powershell
+
+# Build the image
+
+docker build -t website-chatbot-api .```powershell### Setup
+
+
+
+# Run the container# Start FastAPI server
+
+docker run -d --name chatbot-api -p 8080:8080 --env-file .env website-chatbot-api
+
+```python api.py### 1. Install Dependencies
+
+
+
+Or use Docker Compose:
+
+```powershell
+
+docker-compose up# Test the API### 1. Install Dependencies
+
+```
+
+Invoke-RestMethod -Uri http://localhost:8080/health
+
+### Deploy to Google Cloud Run
+
+``````powershell
+
+**One-Command Deployment:**
+
+```powershell
+
+.\deploy-cloudrun.ps1
+
+```## Usage```powershellpip install -r requirements.txt
+
+
+
+This script automatically:
+
+- ✅ Builds a Docker image
+
+- ✅ Tags with version and latest### REST APIpip install -r requirements.txt```
+
+- ✅ Pushes to Google Container Registry
+
+- ✅ Deploys to Cloud Run
+
+- ✅ Configures all environment variables
+
+The API provides several endpoints:```
+
+**Custom Deployment:**
+
+```powershell
+
+.\deploy-cloudrun.ps1 -Memory "512Mi" -Cpu "1" -MaxInstances "3"
+
+```- `GET /health` - Health check### 2. Configure Environment Variables
+
+
+
+Available parameters:- `POST /api/chat` - Chat (non-streaming)
+
+- `-Memory` → Memory allocation (default: 2Gi)
+
+- `-Cpu` → CPU allocation (default: 2)- `POST /api/chat/stream` - Chat (streaming SSE)### 2. Configure Environment Variables
+
+- `-MaxInstances` → Auto-scaling limit (default: 5)
+
+- `-SkipBuild` → Skip Docker build step- `POST /api/search` - Search indexed content
+
+
+
+---- `POST /api/index` - Index a websiteEdit the `.env` file with your configuration:
+
+
+
+## 📁 Project Structure
+
+
+
+```**Example chat request:**Edit the `.env` file with your configuration:
+
+website_chatbot/
+
+│```powershell
+
+├── api.py                      # FastAPI application
+
+├── main.py                     # CLI interface (optional)$body = @{```env
+
+├── Dockerfile                  # Container definition
+
+├── docker-compose.yml          # Local development    query = "What services do you offer?"
+
+├── deploy-cloudrun.ps1         # Automated deployment
+
+├── requirements.txt            # Python dependencies    top_k = 5```env# Google Cloud
+
+├── .env                        # Configuration (DO NOT commit)
+
+│} | ConvertTo-Json
+
+├── agents/
+
+│   ├── workflow.py             # Multi-agent orchestration# Google CloudGOOGLE_CLOUD_PROJECT=your-project-id
+
+│   └── search_agent.py         # Search and answer logic
+
+│Invoke-RestMethod -Uri http://localhost:8080/api/chat `
+
+└── utils/
+
+    ├── crawler.py              # Website indexing  -Method Post `GOOGLE_CLOUD_PROJECT=your-project-idGOOGLE_CLOUD_LOCATION=us-central1
+
+    ├── vector_store.py         # ChromaDB integration
+
+    └── vertex_chat_client.py   # Vertex AI client  -ContentType "application/json" `
+
+```
+
+  -Body $bodyGOOGLE_CLOUD_LOCATION=us-central1VERTEX_AI_MODEL=gemini-2.0-flash-001
+
+---
+
+```
+
+## ⚙️ Configuration
+
+VERTEX_AI_MODEL=gemini-2.0-flash-001VERTEX_AI_EMBEDDING_MODEL=text-embedding-004
+
+All settings are managed in the `.env` file:
+
+### CLI (Optional)
+
+### Required Settings
+
+```envVERTEX_AI_EMBEDDING_MODEL=text-embedding-004
+
+GOOGLE_CLOUD_PROJECT=your-project-id
+
+GOOGLE_CLOUD_LOCATION=us-central1```powershell
+
+CHROMADB_TENANT=your-tenant-id
+
+CHROMADB_DATABASE=your-database-name# Interactive chat# ChromaDB Cloud
+
+CHROMADB_API_KEY=your-api-key
+
+```python main.py chat
+
+
+
+### Optional Settings (with defaults)# ChromaDB CloudCHROMADB_TENANT=your-tenant-id
+
+```env
+
+VERTEX_AI_MODEL=gemini-2.0-flash-001# Test search
+
+VERTEX_AI_EMBEDDING_MODEL=text-embedding-004
+
+CHROMADB_COLLECTION_NAME=website_contentpython main.py test --query "your question"CHROMADB_TENANT=your-tenant-idCHROMADB_DATABASE=your-database-name
+
+PORT=8080
+
+CORS_ORIGINS=*```
+
+CHUNK_SIZE=1000
+
+CHUNK_OVERLAP=200CHROMADB_DATABASE=your-database-nameCHROMADB_API_KEY=your-api-key
+
+```
+
+## Docker & Deployment
+
+### Deployment Settings
+
+```envCHROMADB_API_KEY=your-api-keyCHROMADB_COLLECTION_NAME=website_content
+
+CLOUD_RUN_SERVICE_NAME=website-chatbot-api
+
+```### Local Docker
+
+
+
+---CHROMADB_COLLECTION_NAME=website_content
+
+
+
+## 📚 Documentation```powershell
+
+
+
+- **[DOCUMENTATION.md](./DOCUMENTATION.md)** - Complete guide with:# Build and run# API Settings
+
+  - Detailed API reference
+
+  - Frontend integration examplesdocker build -t website-chatbot-api .
+
+  - Production deployment guide
+
+  - Troubleshooting tipsdocker run -d --name chatbot-api -p 8080:8080 --env-file .env website-chatbot-api# API SettingsPORT=8080
+
+  - Configuration options
+
+
+
+---
+
+# Or use docker-composePORT=8080CORS_ORIGINS=*
+
+## 🛠️ Tech Stack
+
+docker-compose up
+
+- **Backend:** FastAPI (Python)
+
+- **AI Framework:** Microsoft Agent Framework```CORS_ORIGINS=*```
+
+- **LLM:** Google Vertex AI (Gemini)
+
+- **Vector DB:** ChromaDB Cloud
+
+- **Deployment:** Docker, GCP Cloud Run
+
+- **API:** REST with SSE streaming### Deploy to GCP Cloud Run```
+
+
+
+---
+
+
+
+## 📝 License```powershell### 3. Authenticate with Google Cloud
+
+
+
+This project is for demonstration purposes.# One-command deployment (reads all config from .env)
+
+
+
+---.\deploy-cloudrun.ps1### 3. Authenticate with Google Cloud
+
+
+
+**Questions?** See [DOCUMENTATION.md](./DOCUMENTATION.md) or open an issue on GitHub.
+
+
+
+**Built with ❤️ using Microsoft Agent Framework and Google Vertex AI**# Or with custom resources```powershell
+
+
+.\deploy-cloudrun.ps1 -Memory "512Mi" -Cpu "1" -MaxInstances "3"
+
+``````powershellgcloud auth application-default login
+
+
+
+See [DOCUMENTATION.md](./DOCUMENTATION.md) for detailed deployment instructions.gcloud auth application-default login```
+
+
+
+## Project Structure```
+
+
+
+```Or set the path to your service account key:
+
+website_chatbot/
+
+├── api.py                    # FastAPI applicationOr set the path to your service account key:
+
+├── main.py                   # CLI application (optional)
+
+├── deploy-cloudrun.ps1       # Automated deployment script```powershell
+
+├── Dockerfile                # Container definition
+
+├── docker-compose.yml        # Local Docker setup```powershell$env:GOOGLE_APPLICATION_CREDENTIALS="path\to\your\service-account-key.json"
+
+├── requirements.txt          # Python dependencies
+
+├── .env                      # Configuration (not in git)$env:GOOGLE_APPLICATION_CREDENTIALS="path\to\your\service-account-key.json"```
+
+├── DOCUMENTATION.md          # Complete documentation
+
+├── agents/```
+
+│   ├── workflow.py           # Multi-agent orchestration
+
+│   └── search_agent.py       # Search and answer agents### 4. Run the API
+
+└── utils/
+
+    ├── crawler.py            # Website crawler### 4. Run the API
+
+    ├── vector_store.py       # ChromaDB integration
+
+    └── vertex_chat_client.py # Vertex AI client```powershell
+
+```
+
+```powershell# Start FastAPI server
+
+## Documentation
+
+# Start FastAPI serverpython api.py
+
+📖 **[DOCUMENTATION.md](./DOCUMENTATION.md)** - Complete guide including:
+
+- Detailed API reference with examplespython api.py
+
+- Frontend integration (JavaScript, React)
+
+- Docker and GCP deployment# Test the API
+
+- Production tips and troubleshooting
+
+- Configuration options# Test the APIInvoke-RestMethod -Uri http://localhost:8080/health
+
+
+
+## ConfigurationInvoke-RestMethod -Uri http://localhost:8080/health```
+
+
+
+All configuration in `.env`:```
+
+
+
+```env## Usage
+
+# Required
+
+GOOGLE_CLOUD_PROJECT=your-project-id## Usage
+
+GOOGLE_CLOUD_LOCATION=us-central1
+
+CHROMADB_TENANT=your-tenant### REST API
+
+CHROMADB_DATABASE=your-database
+
+CHROMADB_API_KEY=your-api-key### REST API
+
+
+
+# Optional (with defaults)The API provides several endpoints:
+
+VERTEX_AI_MODEL=gemini-2.0-flash-001
+
+VERTEX_AI_EMBEDDING_MODEL=text-embedding-004The API provides several endpoints:
+
+CHROMADB_COLLECTION_NAME=website_content
+
+PORT=8080- `GET /health` - Health check
+
+CORS_ORIGINS=*
+
+CHUNK_SIZE=1000- `GET /health` - Health check- `POST /api/chat` - Chat (non-streaming)
+
+CHUNK_OVERLAP=200
 
 - `POST /api/chat` - Chat (non-streaming)- `POST /api/chat/stream` - Chat (streaming SSE)
 
-- `POST /api/chat/stream` - Chat (streaming SSE)- `POST /api/search` - Search indexed content
+# Optional Cloud Run deployment
+
+CLOUD_RUN_SERVICE_NAME=website-chatbot-api- `POST /api/chat/stream` - Chat (streaming SSE)- `POST /api/search` - Search indexed content
+
+```
 
 - `POST /api/search` - Search indexed content- `POST /api/index` - Index a website
 
+## Support
+
 - `POST /api/index` - Index a website
 
-**Example chat request:**
+- **Complete Documentation:** [DOCUMENTATION.md](./DOCUMENTATION.md)
+
+- **Issues:** Open a GitHub issue**Example chat request:**
+
+- **GCP Support:** https://cloud.google.com/support
 
 **Example chat request:**```powershell
 
+---
+
 ```powershell$body = @{
+
+**Built with Microsoft Agent Framework and Google Vertex AI**
 
 $body = @{    query = "What services do you offer?"
 
